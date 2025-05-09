@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popular Cities - Trip Advisor</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .hero-cities {
+      background: linear-gradient(90deg, rgba(0,0,0,0.7) 50%, rgba(0,123,255,0.3)), 
+        url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero-cities-content {
+      padding: 3rem 2rem;
+      text-align: left;
+      max-width: 700px;
+    }
+    .city-card-img {
+      height: 180px;
+      object-fit: cover;
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+    }
+    .city-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .city-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+    .cta-section {
+      background: linear-gradient(90deg, #f8d90f 60%, #fffbe7 100%);
+      padding: 3rem 0;
+      text-align: center;
+      border-radius: 1rem;
+      margin: 3rem 0 0 0;
+    }
+    .language-selector {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1050;
+    }
+  </style>
+</head>
+<body>
+  <!-- Language Selector Dropdown -->
+  <div class="language-selector dropdown">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fas fa-globe"></i> <span id="currentLanguage">English</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('en'); return false;">🇬🇧 English</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('fr'); return false;">🇫🇷 Français</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('rw'); return false;">🌍 Kinyarwanda</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-cities">
+    <div class="container">
+      <div class="hero-cities-content">
+        <a href="index.html" class="btn btn-light mb-3" id="backHomeBtn"><i class="fas fa-arrow-left"></i> Back Home</a>
+        <h1 class="display-5 fw-bold mb-3" id="heroTitle">🌍 Popular Destinations</h1>
+        <p class="lead mb-0" id="heroDesc">Check the latest weather and travel tips for the world’s top cities. Let your adventure begin!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- City Cards Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4" id="city-list">
+        <div class="col-md-4">
+          <div class="card city-card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=600&q=80" class="city-card-img" alt="New York">
+            <div class="card-body">
+              <h5 class="card-title" id="city1Name">New York</h5>
+              <p class="card-text" id="city1Desc">The city that never sleeps. 16°C, Partly Cloudy</p>
+              <a href="#" class="btn btn-outline-primary btn-sm" id="city1Details"><i class="fas fa-info-circle"></i> Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card city-card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=600&q=80" class="city-card-img" alt="Paris">
+            <div class="card-body">
+              <h5 class="card-title" id="city2Name">Paris</h5>
+              <p class="card-text" id="city2Desc">Romantic city with iconic landmarks. 18°C, Sunny</p>
+              <a href="#" class="btn btn-outline-primary btn-sm" id="city2Details"><i class="fas fa-info-circle"></i> Details</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card city-card shadow-sm h-100">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80" class="city-card-img" alt="Tokyo">
+            <div class="card-body">
+              <h5 class="card-title" id="city3Name">Tokyo</h5>
+              <p class="card-text" id="city3Desc">Vibrant city blending tradition and tech. 22°C, Cloudy</p>
+              <a href="#" class="btn btn-outline-primary btn-sm" id="city3Details"><i class="fas fa-info-circle"></i> Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section container">
+    <h3 class="mb-4" id="ctaTitle">Looking for another city?</h3>
+    <a href="search.html" class="btn btn-primary btn-lg" id="ctaBtn">
+      <i class="fas fa-search"></i> Search Your Own City
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-dark text-white text-center mt-5">
+    <div class="container">
+      <small id="footerText">&copy; 2025 Trip Advisor. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const translations = {
+      en: {
+        backHomeBtn: "Back Home",
+        heroTitle: "🌍 Popular Destinations",
+        heroDesc: "Check the latest weather and travel tips for the world’s top cities. Let your adventure begin!",
+        city1Name: "New York",
+        city1Desc: "The city that never sleeps. 16°C, Partly Cloudy",
+        city1Details: "Details",
+        city2Name: "Paris",
+        city2Desc: "Romantic city with iconic landmarks. 18°C, Sunny",
+        city2Details: "Details",
+        city3Name: "Tokyo",
+        city3Desc: "Vibrant city blending tradition and tech. 22°C, Cloudy",
+        city3Details: "Details",
+        ctaTitle: "Looking for another city?",
+        ctaBtn: "Search Your Own City",
+        footerText: "© 2025 Trip Advisor. All rights reserved."
+      },
+      fr: {
+        backHomeBtn: "Retour à l'accueil",
+        heroTitle: "🌍 Destinations populaires",
+        heroDesc: "Consultez la météo et les conseils de voyage des plus grandes villes du monde. Que l'aventure commence !",
+        city1Name: "New York",
+        city1Desc: "La ville qui ne dort jamais. 16°C, Partiellement nuageux",
+        city1Details: "Détails",
+        city2Name: "Paris",
+        city2Desc: "Ville romantique avec des monuments emblématiques. 18°C, Ensoleillé",
+        city2Details: "Détails",
+        city3Name: "Tokyo",
+        city3Desc: "Ville dynamique alliant tradition et technologie. 22°C, Nuageux",
+        city3Details: "Détails",
+        ctaTitle: "Vous cherchez une autre ville ?",
+        ctaBtn: "Recherchez votre propre ville",
+        footerText: "© 2025 Trip Advisor. Tous droits réservés."
+      },
+      rw: {
+        backHomeBtn: "Subira Ahabanza",
+        heroTitle: "🌍 Aho gusura hazwi cyane",
+        heroDesc: "Reba amakuru mashya y’ikirere n’inama z’ingendo ku mijyi izwi cyane ku isi. Tangira urugendo rwawe!",
+        city1Name: "New York",
+        city1Desc: "Umujyi udasinzira. 16°C, Igice cy’ikirere gisa n’igicu",
+        city1Details: "Ibisobanuro",
+        city2Name: "Paris",
+        city2Desc: "Umujyi w’urukundo n’ibimenyetso bizwi. 18°C, Izuba",
+        city2Details: "Ibisobanuro",
+        city3Name: "Tokyo",
+        city3Desc: "Umujyi uhuza umuco n’ikoranabuhanga. 22°C, Ibicu",
+        city3Details: "Ibisobanuro",
+        ctaTitle: "Urashaka undi mujyi?",
+        ctaBtn: "Shakisha umujyi wawe",
+        footerText: "© 2025 Trip Advisor. Uburenganzira bwose burabitswe."
+      }
+    };
+
+    function setLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      updateLanguage();
+    }
+
+    function updateLanguage() {
+      const lang = localStorage.getItem('lang') || 'en';
+      document.getElementById('currentLanguage').innerText =
+        lang === 'en' ? 'English' : lang === 'fr' ? 'Français' : 'Kinyarwanda';
+      Object.entries(translations[lang]).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      });
+      // Update all detail buttons
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`city${i}Details`);
+        if (btn) btn.innerHTML = `<i class="fas fa-info-circle"></i> ${translations[lang][`city${i}Details`]}`;
+      }
+      // Update CTA button
+      document.getElementById('ctaBtn').innerHTML = `<i class="fas fa-search"></i> ${translations[lang].ctaBtn}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateLanguage);
+  </script>
+</body>
+</html>

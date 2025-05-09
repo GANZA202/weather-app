@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search City Weather | Trip Advisor</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .hero-section {
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 50vh;
+      position: relative;
+    }
+    .hero-overlay {
+      background: rgba(0,0,0,0.5);
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-box {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2rem 2rem 1rem 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      max-width: 500px;
+      margin: -70px auto 2rem auto;
+      position: relative;
+      z-index: 10;
+    }
+    .weather-info, .trip-advice {
+      font-size: 1.1rem;
+    }
+    .weather-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .language-selector {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1050;
+    }
+    @media (max-width: 576px) {
+      .search-box {
+        padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+      }
+      .hero-overlay {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Language Selector Dropdown -->
+  <div class="language-selector dropdown">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="fas fa-globe"></i> <span id="currentLanguage">English</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('en'); return false;">🇬🇧 English</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('fr'); return false;">🇫🇷 Français</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('rw'); return false;">🌍 Kinyarwanda</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-overlay text-white text-center">
+      <div class="container py-5">
+        <h1 class="display-5 fw-bold mb-3" id="heroTitle"><i class="fas fa-search-location me-2"></i>Search City Weather</h1>
+        <p class="lead mb-0" id="heroDesc">Enter a city name to get weather updates and travel advice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Box -->
+  <div class="search-box shadow">
+    <form id="weatherForm" class="d-flex flex-column flex-md-row align-items-center gap-3">
+      <input type="text" class="form-control flex-grow-1" id="city" placeholder="Enter city name..." required>
+      <button type="submit" class="btn btn-primary btn-lg" id="searchBtn">
+        <i class="fas fa-search me-1"></i>Search
+      </button>
+    </form>
+    <div id="weather" class="weather-info mt-4"></div>
+    <div id="weather-icon" class="weather-icon text-primary d-none">
+      <i class="fas fa-cloud-sun"></i>
+    </div>
+    <p id="trip-advice" class="trip-advice text-secondary mt-3"></p>
+    <div class="text-center mt-3">
+      <a href="popular.html" class="btn btn-outline-secondary" id="backToPopular">
+        <i class="fas fa-arrow-left me-1"></i>Back to Popular Cities
+      </a>
+    </div>
+  </div>
+
+  <!-- Optional: Testimonials or Tips Section -->
+  <section class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h5 class="mb-3 text-primary" id="tipTitle">Travel Tip</h5>
+        <blockquote class="blockquote">
+          <p class="mb-0" id="tipText">"Always check the local weather before you travel. This tool helps you plan smarter and pack better!"</p>
+          <footer class="blockquote-footer mt-2" id="tipFooter">Trip Advisor Team</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS + Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Language translation dictionary
+    const translations = {
+      en: {
+        heroTitle: "Search City Weather",
+        heroDesc: "Enter a city name to get weather updates and travel advice.",
+        searchBtn: "Search",
+        backToPopular: "Back to Popular Cities",
+        tipTitle: "Travel Tip",
+        tipText: "\"Always check the local weather before you travel. This tool helps you plan smarter and pack better!\"",
+        tipFooter: "Trip Advisor Team"
+      },
+      fr: {
+        heroTitle: "Rechercher la météo de la ville",
+        heroDesc: "Entrez le nom d'une ville pour obtenir la météo et des conseils de voyage.",
+        searchBtn: "Rechercher",
+        backToPopular: "Retour aux villes populaires",
+        tipTitle: "Astuce de voyage",
+        tipText: "\"Vérifiez toujours la météo locale avant de voyager. Cet outil vous aide à mieux planifier et à mieux préparer vos bagages!\"",
+        tipFooter: "Équipe Trip Advisor"
+      },
+      rw: {
+        heroTitle: "Shakisha Ikirere cy’Umujyi",
+        heroDesc: "Andika izina ry’umujyi ubone amakuru y’ikirere n’inama z’ingendo.",
+        searchBtn: "Shakisha",
+        backToPopular: "Subira ku mijyi ikunzwe",
+        tipTitle: "Inama y’ingendo",
+        tipText: "\"Banza urebe uko ikirere kimeze aho ugiye. Uyu murongo ugufasha gutegura neza urugendo no gupakira ibikenewe!\"",
+        tipFooter: "Itsinda rya Trip Advisor"
+      }
+    };
+
+    function setLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      updateLanguage();
+    }
+
+    function updateLanguage() {
+      const lang = localStorage.getItem('lang') || 'en';
+      document.getElementById('currentLanguage').innerText =
+        lang === 'en' ? 'English' : lang === 'fr' ? 'Français' : 'Kinyarwanda';
+      Object.entries(translations[lang]).forEach(([id, text]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      });
+      // Update button value (special case for <button>)
+      document.getElementById('searchBtn').innerHTML = `<i class="fas fa-search me-1"></i>${translations[lang].searchBtn}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateLanguage);
+
+    // Example: Replace with your actual weather-fetching logic
+    document.getElementById('weatherForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const city = document.getElementById('city').value;
+      document.getElementById('weather').innerHTML = `<strong>Weather for ${city}:</strong> 22°C, Partly Cloudy`;
+      document.getElementById('weather-icon').classList.remove('d-none');
+      document.getElementById('trip-advice').textContent = "It's a great day for sightseeing! Don't forget your sunglasses.";
+    });
+  </script>
+</body>
+</html>

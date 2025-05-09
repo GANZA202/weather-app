@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trip Advisor - Welcome</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    .hero-section {
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .hero-overlay {
+      background: rgba(0,0,0,0.55);
+      width: 100%;
+      padding: 4rem 2rem;
+      border-radius: 1rem;
+      color: #fff;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .feature-icon {
+      color: #f8d90f;
+      margin-bottom: 1rem;
+    }
+    .testimonial-card {
+      background: #fffbe7;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    /* Language selector positioning */
+    .language-selector {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1050; /* Above other content */
+    }
+  </style>
+</head>
+<body>
+  <!-- Language Selector Dropdown -->
+  <div class="language-selector dropdown">
+    <button
+      class="btn btn-outline-light dropdown-toggle"
+      type="button"
+      id="languageDropdown"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+      aria-label="Select Language"
+    >
+      <i class="fas fa-globe"></i> <span id="currentLanguage">English</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('en'); return false;">🇬🇧 English</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('fr'); return false;">🇫🇷 Français</a></li>
+      <li><a class="dropdown-item" href="#" onclick="setLanguage('rw'); return false;">🌍 Kinyarwanda</a></li>
+    </ul>
+  </div>
+
+  <div class="container-fluid px-0">
+    <!-- Hero Section -->
+    <section class="hero-section d-flex justify-content-center">
+      <div class="hero-overlay mx-auto">
+        <h1 class="display-4 fw-bold mb-3" id="heroTitle">Welcome to Trip Advisor</h1>
+        <p class="lead mb-4" id="heroDescription">
+          Discover the best travel experiences with real-time weather insights!
+        </p>
+        <a href="popular.html" class="btn btn-warning btn-lg shadow" id="heroButton">
+          <i class="fas fa-plane-departure me-2"></i>Get Started
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5" id="featuresTitle">Why Choose Us?</h2>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4 text-center">
+            <i class="fas fa-cloud-sun fa-3x feature-icon"></i>
+            <h5 class="mt-3" id="feature1Title">Real-Time Weather</h5>
+            <p id="feature1Desc">Get up-to-date weather reports for any destination you're interested in.</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <i class="fas fa-globe-americas fa-3x feature-icon"></i>
+            <h5 class="mt-3" id="feature2Title">Popular Destinations</h5>
+            <p id="feature2Desc">Explore the world's most popular travel spots, handpicked for you.</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <i class="fas fa-tags fa-3x feature-icon"></i>
+            <h5 class="mt-3" id="feature3Title">Exclusive Deals</h5>
+            <p id="feature3Desc">Find unbeatable offers and discounts on hotels and flights.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5" id="testimonialsTitle">What Our Users Say</h2>
+        <div class="row justify-content-center g-4">
+          <div class="col-md-5">
+            <div class="card testimonial-card p-4">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://randomuser.me/api/portraits/women/68.jpg"
+                  alt="Jane D."
+                  class="rounded-circle me-3"
+                  width="56"
+                  height="56"
+                />
+                <div>
+                  <strong>Jane D.</strong>
+                  <div class="text-warning small">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mb-0" id="testimonial1">"I had the best trip ever, thanks to Trip Advisor's fantastic recommendations!"</p>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="card testimonial-card p-4">
+              <div class="d-flex align-items-center mb-3">
+                <img
+                  src="https://randomuser.me/api/portraits/men/45.jpg"
+                  alt="John S."
+                  class="rounded-circle me-3"
+                  width="56"
+                  height="56"
+                />
+                <div>
+                  <strong>John S.</strong>
+                  <div class="text-warning small">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i
+                    ><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mb-0" id="testimonial2">"The real-time weather feature helped me plan the perfect vacation!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white text-center">
+      <div class="container">
+        <small id="footerText">&copy; 2025 Trip Advisor. All rights reserved.</small>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const translations = {
+      en: {
+        heroTitle: "Welcome to Trip Advisor",
+        heroDescription: "Discover the best travel experiences with real-time weather insights!",
+        heroButton: "Get Started",
+        featuresTitle: "Why Choose Us?",
+        feature1Title: "Real-Time Weather",
+        feature1Desc: "Get up-to-date weather reports for any destination you're interested in.",
+        feature2Title: "Popular Destinations",
+        feature2Desc: "Explore the world's most popular travel spots, handpicked for you.",
+        feature3Title: "Exclusive Deals",
+        feature3Desc: "Find unbeatable offers and discounts on hotels and flights.",
+        testimonialsTitle: "What Our Users Say",
+        testimonial1: '"I had the best trip ever, thanks to Trip Advisor\'s fantastic recommendations!"',
+        testimonial2: '"The real-time weather feature helped me plan the perfect vacation!"',
+        footerText: "© 2025 Trip Advisor. All rights reserved."
+      },
+      fr: {
+        heroTitle: "Bienvenue sur Trip Advisor",
+        heroDescription: "Découvrez les meilleures expériences de voyage avec des informations météo en temps réel !",
+        heroButton: "Commencer",
+        featuresTitle: "Pourquoi Nous Choisir ?",
+        feature1Title: "Météo en Temps Réel",
+        feature1Desc: "Obtenez des rapports météo à jour pour n'importe quelle destination qui vous intéresse.",
+        feature2Title: "Destinations Populaires",
+        feature2Desc: "Explorez les destinations de voyage les plus populaires au monde, sélectionnées pour vous.",
+        feature3Title: "Offres Exclusives",
+        feature3Desc: "Trouvez des offres imbattables et des réductions sur les hôtels et les vols.",
+        testimonialsTitle: "Ce Que Disent Nos Utilisateurs",
+        testimonial1: '"J\'ai passé le meilleur voyage grâce aux recommandations fantastiques de Trip Advisor !"',
+        testimonial2: '"La fonction météo en temps réel m\'a aidé à planifier les vacances parfaites !"',
+        footerText: "© 2025 Trip Advisor. Tous droits réservés."
+      },
+      rw: {
+        heroTitle: "Murakaza neza kuri Trip Advisor",
+        heroDescription: "Menya ibyiza byo gutembera hamwe n’amakuru y’ikirere y’ako kanya!",
+        heroButton: "Tangira",
+        featuresTitle: "Kuki Uduhitamo?",
+        feature1Title: "Igihe Nyacyo cy’Ikirere",
+        feature1Desc: "Bona amakuru y’ikirere agezweho ku gace icyo ari cyo cyose ushaka.",
+        feature2Title: "Ahantu Hazwi cyane",
+        feature2Desc: "Sura ahantu hazwi cyane ku isi, twahisemo ku buryo bwihariye.",
+        feature3Title: "Ibyiza byihariye",
+        feature3Desc: "Shaka ibiciro bidashobora guhangana na byo ku mahoteli n’indege.",
+        testimonialsTitle: "Ibyo Abakiriya Bacu Bavuga",
+        testimonial1: '"Nagize urugendo rwiza cyane, kubera inama nziza za Trip Advisor!"',
+        testimonial2: '"Icyerekezo cy’ikirere mu gihe nyacyo cyamfashije gutegura ibiruhuko byiza!"',
+        footerText: "© 2025 Trip Advisor. Uburenganzira bwose burabitswe."
+      }
+    };
+
+    function setLanguage(lang) {
+      document.getElementById('currentLanguage').innerText =
+        lang === 'en' ? 'English' : lang === 'fr' ? 'Français' : 'Kinyarwanda';
+
+      // Update all translatable elements
+      for (const [id, text] of Object.entries(translations[lang])) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      }
+    }
+  </script>
+</body>
+</html>
